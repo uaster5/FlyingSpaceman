@@ -3,9 +3,13 @@ package com.games.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.games.game.states.GameStateManager;
 import com.games.game.states.MenuState;
 
@@ -16,8 +20,7 @@ public class FlyingSpaceman extends ApplicationAdapter {
 	private GameStateManager gsm;
 	private SpriteBatch batch;
 	private Music music;
-
-	
+	public  static BitmapFont font;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -26,6 +29,13 @@ public class FlyingSpaceman extends ApplicationAdapter {
 		music.setLooping(true);
 		music.setVolume(0.1f);
 		music.play();
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator( Gdx.files.internal("bauhaus.ttf"));
+		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		parameter.size = 32;
+		parameter.color=Color.YELLOW;
+
+		font = generator.generateFont(parameter);
+		generator.dispose();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new MenuState(gsm));
 	}
@@ -37,7 +47,18 @@ public class FlyingSpaceman extends ApplicationAdapter {
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
 	}
-	
+	public static void createFonts(BitmapFont font,int size) {
+
+		FileHandle fontFile = Gdx.files.internal("BAUHS93.TTF");
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
+		FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		parameter.size = size;
+		parameter.color.add(Color.YELLOW);
+
+		font = generator.generateFont(parameter);
+
+		generator.dispose();
+	}
 	@Override
 	public void dispose () {
 		super.dispose();

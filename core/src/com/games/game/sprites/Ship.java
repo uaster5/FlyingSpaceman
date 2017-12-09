@@ -1,6 +1,7 @@
 package com.games.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -17,7 +18,6 @@ public class Ship {
         private Rectangle bound;
         private Texture ship;
         private Rectangle bounds;
-
         public Ship(int x, int y){
             position = new Vector3(x, y, 0);
             velosity = new Vector3(0, 0, 0);
@@ -48,7 +48,12 @@ public class Ship {
 
             }
             public void jump(){
+                if (position.y>430){
+                    velosity.y=0;
+                }
+                else
                 velosity.y = 200;
+
             }
     public Rectangle getBound(){
         return bound;
