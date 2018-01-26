@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.games.game.states.GameStateManager;
 import com.games.game.states.MenuState;
 
-public class FlyingSpaceman extends ApplicationAdapter {
+public class FlyingSpaceman extends ApplicationAdapter {	//тут підключається основні обєкти такі як музика шрифт і т д
 	public static final int WIDTH=800;
 	public static final int HEIGHT=480;
 	public static final String TITLE="Flying Spaceman";
@@ -43,11 +43,11 @@ public class FlyingSpaceman extends ApplicationAdapter {
 	@Override
 	public void render () {
 
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	//очищення рендера
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
 	}
-	public static void createFonts(BitmapFont font,int size) {
+	public static void createFonts(BitmapFont font,int size) {			//створення авторського шрифта
 
 		FileHandle fontFile = Gdx.files.internal("BAUHS93.TTF");
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);

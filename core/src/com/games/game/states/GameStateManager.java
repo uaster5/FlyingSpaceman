@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class GameStateManager {
 
-    private Stack<State> states;
+    private Stack<State> states; //стек з екранів
 
     public GameStateManager(){
         states = new Stack<State>();

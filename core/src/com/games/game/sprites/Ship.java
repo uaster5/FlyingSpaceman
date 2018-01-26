@@ -11,13 +11,12 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Ship {
 
-        private static final int GRAVITY = -15;
-        private static final int MOVEMENT = 100;
-        private Vector3 position;
-        private Vector3 velosity;
+        private static final int GRAVITY = -15;     //зміна положення корабля
+        private static final int MOVEMENT = 100;    //системна зміна для швидкості
+        private Vector3 position;               //позиція
+        private Vector3 velosity;       //швидкість падіння
         private Rectangle bound;
         private Texture ship;
-        private Rectangle bounds;
         public Ship(int x, int y){
             position = new Vector3(x, y, 0);
             velosity = new Vector3(0, 0, 0);
@@ -37,7 +36,7 @@ public class Ship {
             public void update(float dt){
                 if (position.y > 0)
                     velosity.add(0, GRAVITY, 0);
-                velosity.scl(dt);
+                velosity.scl(dt);       //множить на системний час
                 position.add(MOVEMENT*dt, velosity.y, 0);
                 if (position.y < 0)
                     position.y = 0;
@@ -48,7 +47,7 @@ public class Ship {
 
             }
             public void jump(){
-                if (position.y>430){
+                if (position.y>430){        //не дає вилетіти за межі екрану
                     velosity.y=0;
                 }
                 else
